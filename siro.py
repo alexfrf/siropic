@@ -29,7 +29,10 @@ username = "samesiropic"
 password = "hakanc10"
 
 ruta = 'C:\\Users\\aleex\\Data Science Projects\\Portfolio/Siro/Pics'
-path, dirs, files = next(os.walk(ruta))
+try:
+    path, dirs, files = next(os.walk(ruta))
+except StopIteration:
+    pass
 file_count = len(files)
 
 num = np.random.randint(file_count)
