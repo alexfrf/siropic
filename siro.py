@@ -18,9 +18,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sys
-from pynput.keyboard import Key,Controller
+from selenium.webdriver.common.action_chains import ActionChains
+#from pynput.keyboard import Key,Controller
 
-keyboard = Controller()
+
+#keyboard = Controller()
 
 
 username = "samesiropic"
@@ -88,8 +90,9 @@ if process==1:
         # Now send the tweet by clicking the button
         driver.find_element_by_css_selector('button.tweet-action').click()
      #driver.find_element_by_xpath('//div[@class="css-18t94o4 css-1dbjc4n r-1niwhzg r-42olwf r-sdzlij r-1phboty r-rs99b7 r-5vhgbc r-mvpalk r-ti0u9o r-2yi16 r-1qi8awa r-1ny4l3l r-o7ynqc r-6416eg r-lrvibr"]').click()
-    driver.find_element_by_xpath('//a[@class="css-4rbku5 css-18t94o4 css-901oao r-k200y r-14j79pv r-1loqt21 r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-vc4b81 r-dnmrzs r-bcqeeo r-1udh08x r-1udbk01 r-3s2u2q r-qvutc0"]').click()
+    #driver.find_element_by_xpath('//a[@class="css-4rbku5 css-18t94o4 css-901oao r-k200y r-14j79pv r-1loqt21 r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-vc4b81 r-dnmrzs r-bcqeeo r-1udh08x r-1udbk01 r-3s2u2q r-qvutc0"]').click()
     time.sleep(5)
+    """
     cuenta = driver.find_element_by_xpath('//label[@data-testid="searchPeople_label"]')
     
     cuenta.click()
@@ -110,6 +113,11 @@ if process==1:
             EC.presence_of_element_located((By.XPATH, "//span[text()='Done']"))
         ).click()
     time.sleep(10)
+    """
+    element = driver.find_element_by_xpath('//div[@data-testid="tweetButtonInline"]')
+
+    actions = ActionChains(driver)
+    actions.move_to_element(element).perform()
     WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH, '//div[@data-testid="tweetButtonInline"]'))
         ).click()
