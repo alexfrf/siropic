@@ -13,7 +13,7 @@ from selenium import webdriver # SELENIUM
 from bs4 import BeautifulSoup # BEAUTIFULSOUP
 import time
 import os, os.path
-from PIL import Image
+#from PIL import Image
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -67,7 +67,7 @@ for i in range(1, 10):
     else:
         break
     
-img = Image.open(pict)
+#img = Image.open(pict)
 #img.crop((0, 0, img.size[0], 400)).save(pict)    
 if process==1:
     driver.find_element_by_xpath('//a[@data-testid="signupButton"]').click()
