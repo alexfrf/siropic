@@ -19,6 +19,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sys
 from selenium.webdriver.common.action_chains import ActionChains
+from github import Github
 #from pynput.keyboard import Key,Controller
 
 
@@ -27,17 +28,25 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 username = "samesiropic"
 password = "hakanc10"
+pat = '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'
 
 ruta = 'C:\\Users\\aleex\\Data Science Projects\\Portfolio/Siro/Pics'
+github = Github(pat)
+repo = github.get_user().get_repo('siropic')
+files = repo.get_contents(path="Pics")
+
+"""
 try:
     path, dirs, files = next(os.walk(ruta))
 except StopIteration:
     pass
-file_count = len(files)
 
+
+"""
+file_count = len(files)
 num = np.random.randint(file_count)
 pict = files[num]
-pict = path+'/'+pict
+pict = pict.path
 
 link = "https://twitter.com"
 
@@ -66,8 +75,9 @@ for i in range(1, 10):
         continue
     else:
         break
-    
-#img = Image.open(pict)
+file = repo.get_contents(pict)   
+sfile = "https://raw.githubusercontent.com/alexfrf/siropic/master/{}".format(pict)
+#img = Image.open("https://raw.githubusercontent.com/alexfrf/siropic/master/{}".format(pict))
 #img.crop((0, 0, img.size[0], 400)).save(pict)    
 if process==1:
     driver.find_element_by_xpath('//a[@data-testid="signupButton"]').click()
@@ -80,9 +90,9 @@ if process==1:
     driver.find_element_by_xpath('//div[@data-testid="LoginForm_Login_Button"]').click()
     # driver.find_element_by_xpath('//a[@data-testid="SideNav_NewTweet_Button"]').click()
     time.sleep(15)
-    driver.find_element(By.CSS_SELECTOR,"input[data-testid='fileInput']").send_keys(pict)
+    driver.find_element(By.CSS_SELECTOR,"input[data-testid='fileInput']").send_keys(sfile)
     try:
-        print("...uploading", pict)
+        print("...uploading", sfile)
         WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, 'button.js-show-preview'))
         )
