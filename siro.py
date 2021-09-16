@@ -20,6 +20,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import sys
 from selenium.webdriver.common.action_chains import ActionChains
 from github import Github
+import base64
 #from pynput.keyboard import Key,Controller
 
 
@@ -29,11 +30,16 @@ from github import Github
 username = "samesiropic"
 password = "hakanc10"
 pat = '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'
+message_bytes = pat.encode('ascii')
+base64_bytes = base64.b64encode(message_bytes)
+base64_message = base64_bytes.decode('ascii')
 
 ruta = 'C:\\Users\\aleex\\Data Science Projects\\Portfolio/Siro/Pics'
 github = Github(pat)
 repo = github.get_user().get_repo('siropic')
 files = repo.get_contents(path="Pics")
+
+
 
 """
 try:
@@ -77,6 +83,7 @@ for i in range(1, 10):
         break
 file = repo.get_contents(pict)   
 sfile = "https://raw.githubusercontent.com/alexfrf/siropic/master/{}".format(pict)
+request = requests.get(sfile, stream=True)
 #img = Image.open("https://raw.githubusercontent.com/alexfrf/siropic/master/{}".format(pict))
 #img.crop((0, 0, img.size[0], 400)).save(pict)    
 if process==1:
