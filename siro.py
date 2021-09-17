@@ -20,7 +20,6 @@ from selenium.webdriver.support import expected_conditions as EC
 import sys
 from selenium.webdriver.common.action_chains import ActionChains
 from github import Github
-import base64
 #from pynput.keyboard import Key,Controller
 
 
@@ -29,10 +28,7 @@ import base64
 
 username = "samesiropic"
 password = "hakanc10"
-pat = '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'
-message_bytes = pat.encode('ascii')
-base64_bytes = base64.b64encode(message_bytes)
-base64_message = base64_bytes.decode('ascii')
+pat = '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'
 
 ruta = 'C:\\Users\\aleex\\Data Science Projects\\Portfolio/Siro/Pics'
 github = Github(pat)
