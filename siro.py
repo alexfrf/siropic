@@ -21,14 +21,20 @@ import sys
 from selenium.webdriver.common.action_chains import ActionChains
 from github import Github
 #from pynput.keyboard import Key,Controller
-
+import shutil
 
 #keyboard = Controller()
+GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.binary_location = GOOGLE_CHROME_PATH
 
 username = "samesiropic"
 password = "hakanc10"
-pat = "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"
+pat = "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"
 
 ruta = 'C:\\Users\\aleex\\Data Science Projects\\Portfolio/Siro/Pics'
 github = Github(pat)
@@ -63,7 +69,7 @@ process = 0
 
 for i in range(1, 10):
     try:
-        driver = webdriver.Chrome("C:\\Users\\aleex\\chromedriver_win32/chromedriver.exe")
+        driver = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
         driver.get(link)
         time.sleep(3)
         driver.maximize_window()
