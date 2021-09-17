@@ -28,7 +28,7 @@ from github import Github
 
 username = "samesiropic"
 password = "hakanc10"
-pat = "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"
+pat = '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'
 
 ruta = 'C:\\Users\\aleex\\Data Science Projects\\Portfolio/Siro/Pics'
 github = Github(pat)
