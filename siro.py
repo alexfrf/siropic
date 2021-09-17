@@ -36,7 +36,7 @@ username = "samesiropic"
 password = "hakanc10"
 pat = "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"
 
-ruta = 'C:\\Users\\aleex\\Data Science Projects\\Portfolio/Siro/Pics'
+ruta = 'C:\\Users\\aleex\\Data Science Projects\\Portfolio/Siro/'
 github = Github(pat)
 repo = github.get_user().get_repo('siropic')
 files = repo.get_contents(path="Pics")
@@ -85,13 +85,18 @@ for i in range(1, 10):
         continue
     else:
         break
-file = repo.get_contents(pict) 
+    
+file = repo.get_contents(pict)   
 sfile = "https://raw.githubusercontent.com/alexfrf/siropic/master/{}".format(pict)
+filename = ruta+'temp.jpg'
 r = requests.get(sfile, stream=True)
 if r.status_code == 200:
-    with open('img.png', 'wb') as f:
+    with open(filename, 'wb') as f:
         for chunk in r:
             f.write(chunk)
+            
+else:
+    print('Error downloading image')
 #img = Image.open("https://raw.githubusercontent.com/alexfrf/siropic/master/{}".format(pict))
 #img.crop((0, 0, img.size[0], 400)).save(pict)    
 if process==1:
@@ -105,7 +110,7 @@ if process==1:
     driver.find_element_by_xpath('//div[@data-testid="LoginForm_Login_Button"]').click()
     # driver.find_element_by_xpath('//a[@data-testid="SideNav_NewTweet_Button"]').click()
     time.sleep(15)
-    driver.find_element(By.CSS_SELECTOR,"input[data-testid='fileInput']").send_keys(f)
+    driver.find_element(By.CSS_SELECTOR,"input[data-testid='fileInput']").send_keys(filename)
     try:
         print("...uploading", sfile)
         WebDriverWait(driver, 5).until(
@@ -151,3 +156,4 @@ if process==1:
         ).click()
     time.sleep(10)
     driver.close()
+    os.remove(filename)

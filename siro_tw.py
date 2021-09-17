@@ -23,7 +23,6 @@ from github import Github
 #import shutil
 import tweepy
 
-
 #from pynput.keyboard import Key,Controller
 CONSUMER_KEY = 'YOUR_CONSUMER_KEY'
 CONSUMER_SECRET = 'YOUR_CONSUMER_SECRET_KEY'
@@ -46,11 +45,15 @@ pict = pict.path
 
 file = repo.get_contents(pict)   
 sfile = "https://raw.githubusercontent.com/alexfrf/siropic/master/{}".format(pict)
+filename = 'temp.jpg'
 r = requests.get(sfile, stream=True)
 if r.status_code == 200:
-    with open('img.png', 'wb') as f:
+    with open(filename, 'wb') as f:
         for chunk in r:
             f.write(chunk)
+            
+else:
+    print('Error downloading image')
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
@@ -58,6 +61,7 @@ api = tweepy.API(auth, wait_on_rate_limit=True)
 
 user = api.me()
 status = ""
-imagepath = f
+imagepath = filename
 
 api.update_with_media(imagepath, status)
+os.remove(filename)
