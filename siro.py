@@ -23,13 +23,17 @@ from github import Github
 #from pynput.keyboard import Key,Controller
 
 #keyboard = Controller()
-GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
-CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+from webdriver_manager.chrome import ChromeDriverManager
 
-chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--disable-gpu')
-chrome_options.add_argument('--no-sandbox')
-chrome_options.binary_location = GOOGLE_CHROME_PATH
+gChromeOptions = webdriver.ChromeOptions()
+gChromeOptions.add_argument("window-size=1920x1480")
+gChromeOptions.add_argument("disable-dev-shm-usage")
+driver = webdriver.Chrome(
+    chrome_options=gChromeOptions, executable_path=ChromeDriverManager().install()
+)
+
+
+
 
 username = "samesiropic"
 password = "hakanc10"
@@ -57,7 +61,7 @@ pict = pict.path
 
 link = "https://twitter.com"
 
-headers = {'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'}
+#headers = {'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'}
 
 
 # driver.get(link)
@@ -68,7 +72,9 @@ process = 0
 
 for i in range(1, 10):
     try:
-        driver = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        driver = webdriver.Chrome(
+    chrome_options=gChromeOptions, executable_path=ChromeDriverManager().install()
+        ) 
         driver.get(link)
         time.sleep(3)
         driver.maximize_window()
@@ -82,7 +88,7 @@ for i in range(1, 10):
         continue
     else:
         break
-file = repo.get_contents(pict)   
+file = repo.get_contents(pict) 
 sfile = "https://raw.githubusercontent.com/alexfrf/siropic/master/{}".format(pict)
 r = requests.get(sfile, stream=True)
 if r.status_code == 200:

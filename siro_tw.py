@@ -20,7 +20,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import sys
 from selenium.webdriver.common.action_chains import ActionChains
 from github import Github
-import shutil
+#import shutil
 import tweepy
 
 
