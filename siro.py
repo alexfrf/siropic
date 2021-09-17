@@ -21,7 +21,6 @@ import sys
 from selenium.webdriver.common.action_chains import ActionChains
 from github import Github
 #from pynput.keyboard import Key,Controller
-import shutil
 
 #keyboard = Controller()
 GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
@@ -85,7 +84,11 @@ for i in range(1, 10):
         break
 file = repo.get_contents(pict)   
 sfile = "https://raw.githubusercontent.com/alexfrf/siropic/master/{}".format(pict)
-request = requests.get(sfile, stream=True)
+r = requests.get(sfile, stream=True)
+if r.status_code == 200:
+    with open('img.png', 'wb') as f:
+        for chunk in r:
+            f.write(chunk)
 #img = Image.open("https://raw.githubusercontent.com/alexfrf/siropic/master/{}".format(pict))
 #img.crop((0, 0, img.size[0], 400)).save(pict)    
 if process==1:
@@ -99,7 +102,7 @@ if process==1:
     driver.find_element_by_xpath('//div[@data-testid="LoginForm_Login_Button"]').click()
     # driver.find_element_by_xpath('//a[@data-testid="SideNav_NewTweet_Button"]').click()
     time.sleep(15)
-    driver.find_element(By.CSS_SELECTOR,"input[data-testid='fileInput']").send_keys(sfile)
+    driver.find_element(By.CSS_SELECTOR,"input[data-testid='fileInput']").send_keys(f)
     try:
         print("...uploading", sfile)
         WebDriverWait(driver, 5).until(
