@@ -46,18 +46,16 @@ files = repo.get_contents(path="Pics")
 
 
 
-
-try:
-    files = os.listdir(ruta)
-
-except StopIteration:
-    pass
+files=[]
+for i in os.listdir():
+    if '.png' in i:
+        files.append(i)
 
 
 file_count = len(files)
 num = np.random.randint(file_count)
 pict = files[num]
-filename = ruta+pict
+filename = pict
 
 link = "https://twitter.com"
 
