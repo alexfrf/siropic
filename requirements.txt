@@ -3,8 +3,4 @@ pandas==1.2.4
 pynput==1.7.3
 yarl==1.4.2
 PyGithub==1.55
-<<<<<<< HEAD
 tweepy==3.10.0
-=======
-webdriver-manager==3.4.2
->>>>>>> de0b0d47a95953ff035baaacd1f8942a88e3300d
