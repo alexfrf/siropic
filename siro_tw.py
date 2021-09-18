@@ -40,11 +40,11 @@ github = Github(pat)
 repo = github.get_user().get_repo('siropic')
 files = repo.get_contents(path="Pics")
 """
-ruta = '/app/Pics'
+ruta = '/app/Pics/'
 files=[]
 for i in os.listdir(ruta):
     if '.png' in i:
-        files.append(i)
+        files.append(ruta+i)
         
 file_count = len(files)
 num = np.random.randint(file_count)
