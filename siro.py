@@ -22,37 +22,46 @@ from selenium.webdriver.common.action_chains import ActionChains
 from github import Github
 #from pynput.keyboard import Key,Controller
 
-
 #keyboard = Controller()
+from webdriver_manager.chrome import ChromeDriverManager
+
+gChromeOptions = webdriver.ChromeOptions()
+gChromeOptions.add_argument("--headless")
+gChromeOptions.add_argument("--disable-gpu")
+gChromeOptions.add_argument("--no-sandbox")
+
+
 
 
 username = "samesiropic"
 password = "hakanc10"
-pat = "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"
+pat = "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"
 
-ruta = 'C:\\Users\\aleex\\Data Science Projects\\Portfolio/Siro/Pics'
+ruta = 'C:\\Users\\aleex\\Data Science Projects\\Portfolio/Siro/siropic/Pics'
+"""
 github = Github(pat)
 repo = github.get_user().get_repo('siropic')
 files = repo.get_contents(path="Pics")
-
-
-
 """
+
+
+
+
 try:
-    path, dirs, files = next(os.walk(ruta))
+    files = os.listdir(ruta)
+
 except StopIteration:
     pass
 
 
-"""
 file_count = len(files)
 num = np.random.randint(file_count)
 pict = files[num]
-pict = pict.path
+filename = ruta+pict
 
 link = "https://twitter.com"
 
-headers = {'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'}
+#headers = {'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'}
 
 
 # driver.get(link)
@@ -63,7 +72,9 @@ process = 0
 
 for i in range(1, 10):
     try:
-        driver = webdriver.Chrome("C:\\Users\\aleex\\chromedriver_win32/chromedriver.exe")
+        driver = webdriver.Chrome(
+    chrome_options=gChromeOptions, executable_path=ChromeDriverManager().install()
+        ) 
         driver.get(link)
         time.sleep(3)
         driver.maximize_window()
@@ -77,9 +88,19 @@ for i in range(1, 10):
         continue
     else:
         break
+    """
 file = repo.get_contents(pict)   
 sfile = "https://raw.githubusercontent.com/alexfrf/siropic/master/{}".format(pict)
-request = requests.get(sfile, stream=True)
+filename = ruta+'temp.jpg'
+r = requests.get(sfile, stream=True)
+if r.status_code == 200:
+    with open(filename, 'wb') as f:
+        for chunk in r:
+            f.write(chunk)
+            
+else:
+    print('Error downloading image')
+"""
 #img = Image.open("https://raw.githubusercontent.com/alexfrf/siropic/master/{}".format(pict))
 #img.crop((0, 0, img.size[0], 400)).save(pict)    
 if process==1:
@@ -93,9 +114,9 @@ if process==1:
     driver.find_element_by_xpath('//div[@data-testid="LoginForm_Login_Button"]').click()
     # driver.find_element_by_xpath('//a[@data-testid="SideNav_NewTweet_Button"]').click()
     time.sleep(15)
-    driver.find_element(By.CSS_SELECTOR,"input[data-testid='fileInput']").send_keys(sfile)
+    driver.find_element(By.CSS_SELECTOR,"input[data-testid='fileInput']").send_keys(filename)
     try:
-        print("...uploading", sfile)
+        print("...uploading", pict)
         WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, 'button.js-show-preview'))
         )
@@ -139,3 +160,4 @@ if process==1:
         ).click()
     time.sleep(10)
     driver.close()
+    os.remove(filename)
