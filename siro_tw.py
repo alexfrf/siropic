@@ -35,13 +35,14 @@ ACCESS_SECRET = 'ML3s8sj1pEJmjfBF3o3lOVNHcTIt8aITIVpumz81cWvck'
 
 pat = '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'
 
-ruta = 'C:\\Users\\aleex\\Data Science Projects\\Portfolio/Siro/Pics'
+
 github = Github(pat)
 repo = github.get_user().get_repo('siropic')
 files = repo.get_contents(path="Pics")
 """
+ruta = 'C:\\Users\\aleex\\Data Science Projects\\Portfolio/Siro/siropic/Pics/'
 files=[]
-for i in os.listdir('/Pics'):
+for i in os.listdir(ruta):
     if '.png' in i:
         files.append(i)
         
