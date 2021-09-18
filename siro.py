@@ -37,7 +37,7 @@ username = "samesiropic"
 password = "hakanc10"
 pat = "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"
 
-ruta = 'C:\\Users\\aleex\\Data Science Projects\\Portfolio/Siro/siropic/Pics'
+ruta = '/Pics/'
 """
 github = Github(pat)
 repo = github.get_user().get_repo('siropic')
