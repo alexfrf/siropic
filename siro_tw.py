@@ -41,7 +41,7 @@ repo = github.get_user().get_repo('siropic')
 files = repo.get_contents(path="Pics")
 """
 files=[]
-for i in os.listdir():
+for i in os.listdir('/Pics'):
     if '.png' in i:
         files.append(i)
         
