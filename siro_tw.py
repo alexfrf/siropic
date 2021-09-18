@@ -40,7 +40,7 @@ github = Github(pat)
 repo = github.get_user().get_repo('siropic')
 files = repo.get_contents(path="Pics")
 """
-ruta = 'C:\\Users\\aleex\\Data Science Projects\\Portfolio/Siro/siropic/Pics/'
+ruta = '/app/Pics'
 files=[]
 for i in os.listdir(ruta):
     if '.png' in i:
