@@ -74,7 +74,7 @@ for i in range(1, 10):
     chrome_options=gChromeOptions, executable_path=ChromeDriverManager().install()
         ) 
         driver.get(link)
-        time.sleep(3)
+        time.sleep(10)
         driver.maximize_window()
         driver.execute_script("window.scrollTo(0, 600)")
         inicio = driver.find_element_by_xpath('//span[@role="button"]')
@@ -103,7 +103,7 @@ else:
 #img.crop((0, 0, img.size[0], 400)).save(pict)    
 if process==1:
     driver.find_element_by_xpath('//a[@data-testid="signupButton"]').click()
-    time.sleep(3)
+    time.sleep(15)
     user=driver.find_element_by_name('session[username_or_email]')
     user.send_keys(username)
     pw= driver.find_element_by_xpath('//input[@name="session[password]"]')
@@ -111,7 +111,7 @@ if process==1:
     pw.send_keys(password)
     driver.find_element_by_xpath('//div[@data-testid="LoginForm_Login_Button"]').click()
     # driver.find_element_by_xpath('//a[@data-testid="SideNav_NewTweet_Button"]').click()
-    time.sleep(15)
+    time.sleep(45)
     driver.find_element(By.CSS_SELECTOR,"input[data-testid='fileInput']").send_keys(filename)
     try:
         print("...uploading", pict)
@@ -126,7 +126,7 @@ if process==1:
         driver.find_element_by_css_selector('button.tweet-action').click()
      #driver.find_element_by_xpath('//div[@class="css-18t94o4 css-1dbjc4n r-1niwhzg r-42olwf r-sdzlij r-1phboty r-rs99b7 r-5vhgbc r-mvpalk r-ti0u9o r-2yi16 r-1qi8awa r-1ny4l3l r-o7ynqc r-6416eg r-lrvibr"]').click()
     #driver.find_element_by_xpath('//a[@class="css-4rbku5 css-18t94o4 css-901oao r-k200y r-14j79pv r-1loqt21 r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-vc4b81 r-dnmrzs r-bcqeeo r-1udh08x r-1udbk01 r-3s2u2q r-qvutc0"]').click()
-    time.sleep(5)
+    time.sleep(20)
     """
     cuenta = driver.find_element_by_xpath('//label[@data-testid="searchPeople_label"]')
     
@@ -156,6 +156,6 @@ if process==1:
     WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH, '//div[@data-testid="tweetButtonInline"]'))
         ).click()
-    time.sleep(10)
+    time.sleep(30)
     driver.close()
     os.remove(filename)
