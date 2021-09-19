@@ -9,7 +9,6 @@ Created on Thu Aug 19 00:54:31 2021
 import pandas as pd
 import numpy as np
 import requests
-from bs4 import BeautifulSoup # BEAUTIFULSOUP
 import time
 import os, os.path
 import sys
