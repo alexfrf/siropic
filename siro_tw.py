@@ -15,13 +15,14 @@ import sys
 from github import Github
 import tweepy
 
-#from pynput.keyboard import Key,Controller
-CONSUMER_KEY = 'ttZybl14j6YMaBd6taf1UxggL'
-CONSUMER_SECRET = 'D8bC2vMqg9cUmsT62EXHMA5euYdUe8kLlk11IEI5ZJIJSqUuz0'
-ACCESS_KEY = '1133178014844555264-2eJnefpphT7GnevyjQFDzYNLeGT7Xk'
-ACCESS_SECRET = 'ML3s8sj1pEJmjfBF3o3lOVNHcTIt8aITIVpumz81cWvck'
+# Getting our Tweepy keys from an excel file containing our personal tokens
 
-#keyboard = Controller()
+CONSUMER_KEY = CONSUMER_KEY
+CONSUMER_SECRET = CONSUMER_SECRET
+ACCESS_KEY = ACCESS_KEY
+ACCESS_SECRET = ACCESS_SECRET
+
+
 
 ruta = '/app/Pics/'
 files=[]
