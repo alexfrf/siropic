@@ -14,13 +14,14 @@ import os, os.path
 import sys
 from github import Github
 import tweepy
+import os
 
 # Getting our Tweepy keys from an excel file containing our personal tokens
 
-CONSUMER_KEY = CONSUMER_KEY
-CONSUMER_SECRET = CONSUMER_SECRET
-ACCESS_KEY = ACCESS_KEY
-ACCESS_SECRET = ACCESS_SECRET
+CONSUMER_KEY = os.environ['CONSUMER_KEY']
+CONSUMER_SECRET = os.environ['CONSUMER_SECRET']
+ACCESS_KEY = os.environ['ACCESS_KEY']
+ACCESS_SECRET = os.environ['ACCESS_SECRET']
 
 
 
