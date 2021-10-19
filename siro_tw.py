@@ -14,7 +14,6 @@ import os, os.path
 import sys
 from github import Github
 import tweepy
-import os
 
 # Getting our Tweepy keys from an excel file containing our personal tokens
 
